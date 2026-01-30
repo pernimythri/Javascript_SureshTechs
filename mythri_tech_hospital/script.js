@@ -7,17 +7,32 @@ bmiForm.addEventListener("submit", function (e) {
 
   // Access individual form elements using e.target
   const name = form.querySelector("#name").value;
-  const weight = form.querySelector("#weight").value;
-  const height = form.querySelector("#height").value;
+  const weight = +form.querySelector("#weight").value;
+  const height = +form.querySelector("#height").value;// "+" for making string to integer
 
-  console.log("Write your logic here");
   //Write your logic here.
   //Logic begins
 
+  let heightInMeters = height/100;
+  let bmi=Number((weight / heightInMeters ** 2).toFixed(2));
+
+  let result;
+  if(bmi<18.5){
+    console.log("Thin")
+    result="Thin"
+  }
+  else if(bmi>25){
+    console.log("Fat")
+    result="Fat"
+  }
+  else{
+    console.log("Normal")
+    result="Normal"
+  }
   //Logic ends
 
-  //Uncomment below code after writing your logic
-  // form.querySelector("#result").textContent = `${name}, You are ${result}`;
+
+form.querySelector("#result").textContent = `${name.toUpperCase()}, You are ${result}`;
 });
 
 //Below code is reset the form - will explain later
